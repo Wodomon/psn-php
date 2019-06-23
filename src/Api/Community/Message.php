@@ -7,8 +7,6 @@ use PlayStation\Client;
 use PlayStation\Api\AbstractApi;
 use PlayStation\Api\User;
 
-use PlayStation\Api\Community\Message;
-
 class Message extends AbstractApi 
 {
     private $message;

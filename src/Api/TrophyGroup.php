@@ -112,7 +112,7 @@ class TrophyGroup extends AbstractApi
             'fields' => '@default,trophyRare,trophyEarnedRate,hasTrophyGroups,trophySmallIconUrl',
             'iconSize' => 'm',
             'visibleType' => 1,
-            'npLanguage' => 'en'
+            'npLanguage' => $this->client->getLanguage()
         ];
 
         if ($this->comparing()) {

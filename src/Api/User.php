@@ -552,7 +552,7 @@ class User extends AbstractApi
         $sessions = $this->get(sprintf(Session::SESSION_ENDPOINT, $this->onlineIdParameter), [
             'fields' => '@default,npTitleDetail,npTitleDetail.platform,sessionName,sessionCreateTimestamp,availablePlatforms,members,memberCount,sessionMaxUser',
             'titleIconSize' => 's',
-            'npLanguage' => 'en'
+            'npLanguage' => $this->client->getLanguage()
         ]);
 
         if ($sessions->size === 0) return null;

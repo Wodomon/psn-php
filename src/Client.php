@@ -31,19 +31,22 @@ class Client {
     private $accessToken;
     private $refreshToken;
     private $expiresIn;
+    private $npLanguage;
 
     public function __construct(array $options = [])
     {
         $this->options = $options;
         $this->httpClient = new HttpClient(new \GuzzleHttp\Client($this->options));
+        $this->npLanguage = 'en';
     }
-    
+
     /**
      * Login to PlayStation network using a refresh token or 2FA.
      *
      * @param string $ticketUuidOrRefreshToken Ticket UUID for 2FA, or the refresh token.
      * @param string $code 2FA code sent to your device (ignore if using refresh token).
      * @return void
+     * @throws \Exception
      */
     public function login(string $ticketUuidOrRefreshToken, string $code = null) 
     {
@@ -263,5 +266,21 @@ class Client {
         }
 
         return new Community($this, $communityIdOrName);
+    }
+
+    /**
+     * @param string $lang Language for api calls
+     */
+    public function setLanguage(string $lang)
+    {
+        $this->npLanguage = $lang;
+    }
+
+    /**
+     * @return string Language for api calls
+     */
+    public function getLanguage()
+    {
+        return $this->npLanguage;
     }
 }

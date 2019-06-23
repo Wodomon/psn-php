@@ -117,7 +117,7 @@ class Game extends AbstractApi
             $game = $this->get(Trophy::TROPHY_ENDPOINT . 'apps/trophyTitles', [
                 'npTitleIds' => $this->titleId,
                 'fields' => '@default',
-                'npLanguage' => 'en'
+                'npLanguage' => $this->client->getLanguage()
             ]);
             
             if (!count($game->apps) || !count($game->apps[0]->trophyTitles)) return null;
@@ -125,7 +125,7 @@ class Game extends AbstractApi
             $this->npCommunicationId = $game->apps[0]->trophyTitles[0]->npCommunicationId;
 
             $data = [
-                'npLanguage' => 'en'
+                'npLanguage' => $this->client->getLanguage()
             ];
 
             if ($this->isComparing()) {
@@ -175,7 +175,7 @@ class Game extends AbstractApi
         $data = [
             'fields' => '@default,trophyTitleSmallIconUrl,trophyGroupSmallIconUrl',
             'iconSize' => 'm',
-            'npLanguage' => 'en'
+            'npLanguage' => $this->client->getLanguage()
         ];
 
         if ($this->isComparing()) {
@@ -205,7 +205,7 @@ class Game extends AbstractApi
             'fields' => '@default,trophyRare,trophyEarnedRate,hasTrophyGroups,trophySmallIconUrl',
             'iconSize' => 'm',
             'visibleType' => 1,
-            'npLanguage' => 'en'
+            'npLanguage' => $this->client->getLanguage()
         ];
 
         if ($this->isComparing()) {
