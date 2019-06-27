@@ -123,10 +123,9 @@ class Trophy extends AbstractApi
     {
         if (!$this->earned()) return null;
 
-        return new \DateTime(
-            $this->comparing() ?
-            $this->trophy->comparedUser->earnedDate :
-            $this->trophy->fromUser->earnedDate
+        return new \DateTime($this->comparing()
+            ? (isset($this->trophy->comparedUser->earnedDate) ? $this->trophy->comparedUser->earnedDate : 'now')
+            : (isset($this->trophy->fromUser->earnedDate) ? $this->trophy->fromUser->earnedDate : 'now')
         );
     }
 
